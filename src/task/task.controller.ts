@@ -1,19 +1,18 @@
-import { Controller, Post, Body } from "@nestjs/common";
+import { Body, Controller, Post } from "@nestjs/common";
 import { TaskService } from "./task.service";
-import { AddPointsParams } from "src/common/Interfaces";
+import { AddPointsParams, Auth0User } from "src/common/Interfaces";
 
 @Controller("task")
 export class TaskController {
 	constructor(private readonly service: TaskService) {}
 
-	/** Takes { id: string, points: number } and adds the points to the users total */
 	@Post("/addpoints")
 	addPoints(@Body() params: AddPointsParams) {
 		return this.service.addPointsToUser(params);
 	}
 
-	@Post("/validateid")
-	validateId(@Body() id: string) {
-		return this.service.validateId(id);
+	@Post("/getuserobject")
+	getUserObject(@Body() user: Auth0User) {
+		return this.service.getUserObject(user);
 	}
 }

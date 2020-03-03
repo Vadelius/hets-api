@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Body, Param, Delete } from "@nestjs/common";
 import { ActivityService } from "./activity.service";
-import { Activity } from "../model/activity.entity";
+import { Activity } from "./activity.entity";
 
 @Controller("activity")
 export class ActivityController {

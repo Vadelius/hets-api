@@ -1,7 +1,8 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
-import { Exercise } from "../model/exercise.entity";
+import { Exercise } from "./exercise.entity";
+import { CreateExerciseInput } from "./dto/createExercise.input";
 
 @Injectable()
 export class ExerciseService {
@@ -14,8 +15,13 @@ export class ExerciseService {
 	public async getAll(): Promise<Exercise[]> {
 		return await this.repo.find();
 	}
-	public async create(exercise: Exercise) {
-		return await this.repo.save(exercise);
+
+	public async create(dtoInput: CreateExerciseInput): Promise<Exercise> {
+		const newExercise = this.repo.create({
+			...dtoInput,
+		});
+		await this.repo.insert(newExercise);
+		return newExercise;
 	}
 
 	public async delete(id: string) {

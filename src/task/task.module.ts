@@ -2,7 +2,7 @@ import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { TaskService } from "./task.service";
 import { TaskController } from "./task.controller";
-import { User } from "../model/user.entity";
+import { User } from "../user/user.entity";
 
 @Module({
 	imports: [TypeOrmModule.forFeature([User])],
@@ -10,4 +10,4 @@ import { User } from "../model/user.entity";
 	controllers: [TaskController],
 	exports: [],
 })
-export class TaskMoudle {}
+export class TaskModule {}

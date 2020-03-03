@@ -1,5 +1,5 @@
 import { Controller, Get, Post, Body, Param, Delete } from "@nestjs/common";
-import { Exercise } from "../model/exercise.entity";
+import { Exercise } from "./exercise.entity";
 import { ExerciseService } from "./exercise.service";
 
 @Controller("exercise")
